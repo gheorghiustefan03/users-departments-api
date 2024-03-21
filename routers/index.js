@@ -6,6 +6,6 @@ const {resetDb} = require('../config');
 
 router.use('/user', userRouter);
 router.use('/department', departmentRouter);
-router.get('/reset', resetDb);
+router.route('/reset').get(resetDb);
 
 module.exports = router;

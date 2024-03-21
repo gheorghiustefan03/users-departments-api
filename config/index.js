@@ -7,5 +7,31 @@ const resetDb = async (req, res)=>{
         res.status(500).json({message: "Server error"});
     }
 }
+const utils = {
+    //removes leading and trailing whitespace, capitalizes the string
+    standardizeStr: (input)=>{
+        const trimmedStr = input.trim();
+        return trimmedStr.charAt(0).toUpperCase() + trimmedStr.slice(1);
+    },
+    //checks if valueToCheck is unique in an array of objects (objArray)
+    //only checks against value objArray[objKey] for each object
+    //returns true if unique, false if not
+    isUniqueValue: (valueToCheck, objArray, objKey)=>{
+        for(const obj of objArray){
+            if(typeof(valueToCheck) === 'string'){
+                if(valueToCheck.toLowerCase() === (obj[objKey]).toLowerCase()){
+                    return false;
+                }
+            }
+            else{
+                if(valueToCheck === obj[objKey]){
+                    return false;
+                }
+            }
+        }
+    
+        return true;
+    }
+}
 
-module.exports = {db, resetDb};
+module.exports = {db, resetDb, utils};

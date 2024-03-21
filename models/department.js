@@ -10,7 +10,8 @@ const departmentModel = (db)=>{
         },
         departmentName:{
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            unique: true
         },
         maxMembers:{
             type: DataTypes.INTEGER,

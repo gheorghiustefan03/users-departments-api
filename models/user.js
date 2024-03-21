@@ -22,11 +22,12 @@ const UserModel = (db)=>{
         },
         password:{
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            unique: true
         },
         profilePicFile:{
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         }
     }, {freezeTableName: true});
     return model;
