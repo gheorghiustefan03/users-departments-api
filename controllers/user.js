@@ -27,7 +27,8 @@ const userController = {
                 DepartmentId
             };
 
-            if(DepartmentId || DepartmentId === ""){
+            //could be moved in middleware
+            if(payload.DepartmentId != null){
                 const department = await departmentTable.findByPk(DepartmentId);
                 if(!department){
                     res.status(400).json({message: 'Invalid department id provided'});
