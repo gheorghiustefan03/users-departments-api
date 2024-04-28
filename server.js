@@ -11,7 +11,4 @@ app.listen(process.env.PORT, ()=>{
 })
 
 //todo
-//test user routes w/o middleware
-//implement user middleware
-//test user middleware
 //implement login, file upload

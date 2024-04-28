@@ -1,17 +1,6 @@
 const {utils} = require('../../config');
 const {departmentTable, userTable} = require('../../models');
 
-
-const getNoMembers = (departmentId, users) => {
-    let noMembers = 0;
-    for(const user of users){
-        if(user.DepartmentId === departmentId){
-            noMembers += 1;
-        }
-    }
-    return noMembers;
-}
-
 const controller = {
     checkDepartmentPayload: async (req, res, next)=>{
         try {
@@ -50,7 +39,6 @@ const controller = {
                 res.status(400).json({message: jsonMsg});
             }
         } catch (error) {
-            console.log(error);
             res.status(500).json({message: "Server error"});
         }
     },
@@ -62,7 +50,7 @@ const controller = {
                 res.status(404).json({message: `No department with ID ${req.params.id} found`});
                 return;
             }
-            const noMembers = getNoMembers(req.params.id, users);
+            const noMembers = utils.getNoMembers(req.params.id, users);
             if(noMembers > req.body.maxMembers){
                 res.status(400).json({message: `Cannot change value of maxMembers to one larger than actual nr. of members in db (${noMembers})`})
             }

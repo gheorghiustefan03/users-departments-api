@@ -31,6 +31,15 @@ const utils = {
         }
     
         return true;
+    },
+    getNoMembers: (departmentId, users) => {
+        let noMembers = 0;
+        for(const user of users){
+            if(user.DepartmentId === departmentId){
+                noMembers += 1;
+            }
+        }
+        return noMembers;
     }
 }
 

@@ -1,16 +1,16 @@
 {
 	"info": {
-		"_postman_id": "724f2186-0265-486e-a043-5316bd17f96d",
-		"name": "node practice",
+		"_postman_id": "90f8d2bf-3035-4c59-b669-c3977831181f",
+		"name": "node_practice",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "32051381"
+		"_exporter_id": "34406561"
 	},
 	"item": [
 		{
 			"name": "config",
 			"item": [
 				{
-					"name": "reset db",
+					"name": "resetDb",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -41,7 +41,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"departmentName\":\"Human Resources\",\r\n    \"maxMembers\":4\r\n}",
+							"raw": "{\r\n    \"departmentName\":\"test\",\r\n    \"maxMembers\":4\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -155,6 +155,158 @@
 								"department",
 								"delete",
 								"_id"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Georgica\",\r\n    \"lastName\": \"Marian\",\r\n    \"email\": \"test@test.test\",\r\n    \"password\": \"abcdd\",\r\n    \"DepartmentId\": \"invalidDept\",\r\n    \"profilePicFile\": \"tba\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1234/api/user/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1234",
+							"path": [
+								"api",
+								"user",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1234/api/user/get",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1234",
+							"path": [
+								"api",
+								"user",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1234/api/user/get/_id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1234",
+							"path": [
+								"api",
+								"user",
+								"get",
+								"_id"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"marian-ion\",\r\n    \"DepartmentId\": \"invalidDept\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:1234/api/user/update/_id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1234",
+							"path": [
+								"api",
+								"user",
+								"update",
+								"_id"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1234/api/user/delete/_id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1234",
+							"path": [
+								"api",
+								"user",
+								"delete",
+								"_id"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1234/api/user/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1234",
+							"path": [
+								"api",
+								"user",
+								"login"
 							]
 						}
 					},

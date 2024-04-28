@@ -9,15 +9,14 @@ const hashPassword = async (password)=>{
     return newPass;
 }
 
-//todo  -validations
-//      -upload pfp
+//todo  -upload pfp
 //      -login
 
 const userController = {
     createUser: async (req, res)=>{
         try {
             const {firstName, lastName, email, password, profilePicFile, DepartmentId} = req.body;
-            //validations
+
             const payload ={
                 firstName,
                 lastName,
@@ -26,15 +25,6 @@ const userController = {
                 profilePicFile,     //string for now
                 DepartmentId
             };
-
-            //could be moved in middleware
-            if(payload.DepartmentId != null){
-                const department = await departmentTable.findByPk(DepartmentId);
-                if(!department){
-                    res.status(400).json({message: 'Invalid department id provided'});
-                    return;
-                }
-            }
 
             payload.password = await hashPassword(payload.password);
             const createdUser = await userTable.create(payload);
@@ -77,14 +67,14 @@ const userController = {
                 res.status(404).json({message: `No user with id ${req.params.id} in database`});
                 return;
             }
-            const {firstName, lastName, email, password, profilePicFile} = req.body;
-            //validations
+            const {firstName, lastName, email, password, profilePicFile, DepartmentId} = req.body;
             const payload ={
                 firstName,
                 lastName,
                 email,
                 password,
-                profilePicFile   //string for now
+                profilePicFile,   //string for now
+                DepartmentId
             };
             user.update(payload);
             res.status(200).json(user);
