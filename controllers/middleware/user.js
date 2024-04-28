@@ -1,16 +1,27 @@
 const {userTable, departmentTable} = require('../../models');
 const {utils} = require('../../config');
+const path = require('node:path'); 
+const fs = require("fs");
 
-
-//validate payload
-//check if department full
-//profile pic, department id can be null
-//email has to be unique
+const multer = require('multer');
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, 'temp/');
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now().toString());
+    }
+  })
 
 const emailRegex = /^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$/;
 const nameRegex = /^[a-zA-Z-\s]+$/
 
 const controller = {
+    uploadPfp: multer({storage: storage,
+        limits:{
+            fileSize: 15000000
+    }}).single('profilePicFile'),
+
     checkUserPayload: async (req, res, next) => {
         try {
             const users = await userTable.findAll();
@@ -21,7 +32,7 @@ const controller = {
                 if(typeof(req.body[key]) === 'string' && key != 'email' && key != 'password')
                     req.body[key] = utils.standardizeStr(req.body[key])
             }
-    
+
             const payload = req.body;
             const {firstName, lastName, email, password, DepartmentId} = payload;
     
@@ -70,9 +81,22 @@ const controller = {
                     }
                 }
             }
+            let validFile = true;
+            if(req.file != null){
+                const validExts = /jpg|jpeg|png/;
+                if(!validExts.test(path.extname(req.file.originalname)) || !validExts.test(req.file.mimetype)){
+                    errors.push("Invalid profile picture file extension");
+                    validFile = false
+                };
+            }
+
             if(errors.length === 0)
                 next();
             else{
+                if(!validFile)
+                    fs.unlink(req.file.path, err => {
+                        if(err) throw err;
+                });
                 const jsonMsg = {...errors};
                 res.status(400).json({message: jsonMsg});
             }

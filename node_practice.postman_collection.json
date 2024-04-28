@@ -171,13 +171,40 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"Georgica\",\r\n    \"lastName\": \"Marian\",\r\n    \"email\": \"test@test.test\",\r\n    \"password\": \"abcdd\",\r\n    \"DepartmentId\": \"invalidDept\",\r\n    \"profilePicFile\": \"tba\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profilePicFile",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "firstName",
+									"value": "Georgian",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Marian",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "test@test22.test",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "abcdd",
+									"type": "text"
+								},
+								{
+									"key": "DepartmentId",
+									"value": "invalidDept",
+									"type": "text",
+									"disabled": true
 								}
-							}
+							]
 						},
 						"url": {
 							"raw": "http://localhost:1234/api/user/create",
@@ -244,13 +271,25 @@
 						"method": "PUT",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"marian-ion\",\r\n    \"DepartmentId\": \"invalidDept\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "firstName",
+									"value": "marian-ion",
+									"type": "text"
+								},
+								{
+									"key": "DepartmentId",
+									"value": "invalidDept",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "profilePicFile",
+									"type": "file",
+									"src": "/C:/Users/p0meg/Downloads/69662625_242459853327734_8416065519460348161_n-768x960.jpg"
 								}
-							}
+							]
 						},
 						"url": {
 							"raw": "http://localhost:1234/api/user/update/_id",
@@ -275,7 +314,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:1234/api/user/delete/_id",
+							"raw": "http://localhost:1234/api/user/delete/e73264c8-bf5c-4ad9-8751-1571a7019abb",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -285,7 +324,7 @@
 								"api",
 								"user",
 								"delete",
-								"_id"
+								"e73264c8-bf5c-4ad9-8751-1571a7019abb"
 							]
 						}
 					},

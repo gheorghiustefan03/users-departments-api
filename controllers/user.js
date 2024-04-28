@@ -1,5 +1,7 @@
-const {userTable, departmentTable} = require('../models');
+const {userTable} = require('../models');
 const bcrypt = require('bcrypt');
+const fs = require("fs");
+const path = require('node:path'); 
 
 const hashPassword = async (password)=>{
     const noRounds = 10;
@@ -9,25 +11,31 @@ const hashPassword = async (password)=>{
     return newPass;
 }
 
-//todo  -upload pfp
-//      -login
+//todo - login
 
 const userController = {
     createUser: async (req, res)=>{
         try {
-            const {firstName, lastName, email, password, profilePicFile, DepartmentId} = req.body;
+            const {firstName, lastName, email, password, DepartmentId} = req.body;
 
             const payload ={
                 firstName,
                 lastName,
                 email,
                 password,
-                profilePicFile,     //string for now
                 DepartmentId
             };
 
             payload.password = await hashPassword(payload.password);
             const createdUser = await userTable.create(payload);
+            if(req.file != null){
+                fs.copyFile(req.file.path, "profile_pics\\" + createdUser.id + path.extname(req.file.originalname), (err) => {
+                    if (err) throw err;
+                  });
+                fs.unlink(req.file.path, err => {
+                    if(err) throw err;
+                });
+            }
             res.status(200).json(createdUser);
         } catch (error) {
             console.log(error);
@@ -67,16 +75,23 @@ const userController = {
                 res.status(404).json({message: `No user with id ${req.params.id} in database`});
                 return;
             }
-            const {firstName, lastName, email, password, profilePicFile, DepartmentId} = req.body;
+            const {firstName, lastName, email, password, DepartmentId} = req.body;
             const payload ={
                 firstName,
                 lastName,
                 email,
                 password,
-                profilePicFile,   //string for now
                 DepartmentId
             };
             user.update(payload);
+            if(req.file != null){
+                fs.copyFile(req.file.path, 'profile_pics\\' + user.id + path.extname(req.file.originalname), err =>{
+                    if(err) throw err;
+                })
+                fs.unlink(req.file.path, err => {
+                    if(err) throw err;
+                })
+            }
             res.status(200).json(user);
         } catch (error) {
             res.status(500).json({message: 'Server error'});
@@ -90,8 +105,21 @@ const userController = {
                 return;
             }
             user.destroy();
+
+            let pfpPath = ('.\\profile_pics\\' + req.params.id + '.');
+            if(fs.existsSync(pfpPath + 'png'))
+                pfpPath += 'png';
+            else if(fs.existsSync(pfpPath + 'jpg'))
+                pfpPath += 'jpg';
+            else if(fs.existsSync(pfpPath + 'jpeg'))
+                pfpPath += 'jpeg';
+            console.log(pfpPath);
+            if(/png|jpeg|jpg/.test(pfpPath))
+                fs.unlinkSync(pfpPath);
+
             res.status(200).json({message: `User with id ${req.params.id} deleted`});
         } catch (error) {
+            console.log(error);
             res.status(500).json({message: 'Server error'});
         }
     },

@@ -24,10 +24,6 @@ const UserModel = (db)=>{
         password:{
             type: DataTypes.STRING,
             allowNull: false,
-        },
-        profilePicFile:{
-            type: DataTypes.STRING,
-            allowNull: true
         }
     }, {freezeTableName: true});
     return model;
