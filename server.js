@@ -2,7 +2,10 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const router = require('./routers');
+const cookieParser = require('cookie-parser');
+
 app.use(express.json());
+app.use(cookieParser());
 
 app.use('/api', router);
 
@@ -11,4 +14,4 @@ app.listen(process.env.PORT, ()=>{
 })
 
 //todo
-//implement login, file upload
+//implement login

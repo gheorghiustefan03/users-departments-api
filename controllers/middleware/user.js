@@ -81,19 +81,17 @@ const controller = {
                     }
                 }
             }
-            let validFile = true;
             if(req.file != null){
                 const validExts = /jpg|jpeg|png/;
                 if(!validExts.test(path.extname(req.file.originalname)) || !validExts.test(req.file.mimetype)){
                     errors.push("Invalid profile picture file extension");
-                    validFile = false
                 };
             }
 
             if(errors.length === 0)
                 next();
             else{
-                if(!validFile)
+                if(req.file != null)
                     fs.unlink(req.file.path, err => {
                         if(err) throw err;
                 });

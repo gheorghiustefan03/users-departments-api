@@ -1,7 +1,19 @@
 const db = require('./db');
+const fs = require('fs');
+
 const resetDb = async (req, res)=>{
     try {
         await db.sync({force: true});
+        fs.readdir(__dirname + '\\..\\profile_pics\\', (err, files) => {
+            if(err) throw err;
+
+            for(const file of files){
+                if(file !== '.gitkeep')
+                    fs.unlink(__dirname + '\\..\\profile_pics\\' + file, err => {
+                if(err) throw err;
+                });
+            }
+        })
         res.status(200).json({message: "Database reset"});
     } catch (error) {
         res.status(500).json({message: "Server error"});

@@ -176,7 +176,7 @@
 								{
 									"key": "profilePicFile",
 									"type": "file",
-									"src": []
+									"src": "/C:/Users/p0meg/Downloads/borzoi.jpg"
 								},
 								{
 									"key": "firstName",
@@ -190,7 +190,7 @@
 								},
 								{
 									"key": "email",
-									"value": "test@test22.test",
+									"value": "test@test118.test",
 									"type": "text"
 								},
 								{
@@ -292,7 +292,7 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:1234/api/user/update/_id",
+							"raw": "http://localhost:1234/api/user/update/6a9ee490-04b2-438d-acea-80366fe17092",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -302,7 +302,7 @@
 								"api",
 								"user",
 								"update",
-								"_id"
+								"6a9ee490-04b2-438d-acea-80366fe17092"
 							]
 						}
 					},
@@ -333,8 +333,17 @@
 				{
 					"name": "login",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"test@test118.test\",\r\n    \"password\": \"abcdd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:1234/api/user/login",
 							"protocol": "http",
@@ -346,6 +355,48 @@
 								"api",
 								"user",
 								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getLoggedInUser",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1234/api/user/getLoggedInUser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1234",
+							"path": [
+								"api",
+								"user",
+								"getLoggedInUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:1234/api/user/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "1234",
+							"path": [
+								"api",
+								"user",
+								"logout"
 							]
 						}
 					},

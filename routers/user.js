@@ -8,6 +8,8 @@ router.route('/get').get(userController.getAllUsers);
 router.route('/get/:id').get(userController.getUserById);
 router.route('/update/:id').put(userMiddleware.uploadPfp, userMiddleware.checkUserPayload, userController.updateUser);
 router.route('/delete/:id').delete(userController.deleteUser);
-router.route('/login').get(userController.loginUser);
+router.route('/login').post(userController.loginUser);
+router.route('/getLoggedInUser').get(userController.getLoggedInUser);
+router.route('/logout').get(userController.logout)
 
 module.exports = router;

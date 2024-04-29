@@ -1,3 +1,5 @@
 node_modules
 profile_pics/*
 !profile_pics/.gitkeep
+temp/*
+!temp/.gitkeep
