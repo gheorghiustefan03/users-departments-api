@@ -176,7 +176,7 @@
 								{
 									"key": "profilePicFile",
 									"type": "file",
-									"src": "/C:/Users/p0meg/Downloads/borzoi.jpg"
+									"src": []
 								},
 								{
 									"key": "firstName",
@@ -287,12 +287,12 @@
 								{
 									"key": "profilePicFile",
 									"type": "file",
-									"src": "/C:/Users/p0meg/Downloads/69662625_242459853327734_8416065519460348161_n-768x960.jpg"
+									"src": []
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:1234/api/user/update/6a9ee490-04b2-438d-acea-80366fe17092",
+							"raw": "http://localhost:1234/api/user/update/_id",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -302,7 +302,7 @@
 								"api",
 								"user",
 								"update",
-								"6a9ee490-04b2-438d-acea-80366fe17092"
+								"_id"
 							]
 						}
 					},
@@ -314,7 +314,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:1234/api/user/delete/e73264c8-bf5c-4ad9-8751-1571a7019abb",
+							"raw": "http://localhost:1234/api/user/delete/_id",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -324,7 +324,7 @@
 								"api",
 								"user",
 								"delete",
-								"e73264c8-bf5c-4ad9-8751-1571a7019abb"
+								"_id"
 							]
 						}
 					},
