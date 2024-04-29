@@ -6,4 +6,6 @@ The API also supports image uploads for each user (the user's profile picture), 
 
 Finally, it has a barebones authentication system developed using JWT, with a dedicated route to check the logged in user.
 
+I have included the Postman collection of routes the app implements, it also uses a mySQL database and connects to it using Sequelize. The database would need to be created using software such as XAMPP/Laragon (and the resetDb route would need to be called) prior to the usage of any other routes, otherwise none of them will work.
+
 I have developed this with the purpose of practicing back-end developement using Node.js - the application has no front-end part as of yet.
