@@ -1,23 +1,23 @@
-const {DataTypes} = require('sequelize');
+const { DataTypes } = require('sequelize');
 
-const departmentModel = (db)=>{
+const departmentModel = (db) => {
     const model = db.define('Department', {
-        id:{
+        id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
             allowNull: false,
             primaryKey: true
         },
-        departmentName:{
+        departmentName: {
             type: DataTypes.STRING,
             allowNull: false,
             unique: true
         },
-        maxMembers:{
+        maxMembers: {
             type: DataTypes.INTEGER,
             allowNull: false
         }
-    }, {freezeTableName: true});
+    }, { freezeTableName: true });
     return model;
 };
 

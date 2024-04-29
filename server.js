@@ -9,9 +9,6 @@ app.use(cookieParser());
 
 app.use('/api', router);
 
-app.listen(process.env.PORT, ()=>{
+app.listen(process.env.PORT, () => {
     console.log(`Server running at ${process.env.PROTOCOL}://${process.env.HOST}:${process.env.PORT}`);
-})
-
-//todo
-//implement login
+});

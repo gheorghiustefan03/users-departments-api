@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {departmentController} = require('../controllers');
+const { departmentController } = require('../controllers');
 const middlewares = require('../controllers/middleware').department;
 
 router.route('/create').post(middlewares.checkDepartmentPayload, departmentController.createDepartment);

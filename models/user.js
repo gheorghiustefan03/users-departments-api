@@ -1,31 +1,31 @@
-const {DataTypes} = require('sequelize');
+const { DataTypes } = require('sequelize');
 
-const UserModel = (db)=>{
+const UserModel = (db) => {
     const model = db.define('User', {
-        id:{
+        id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
             allowNull: false,
             primaryKey: true
         },
-        firstName:{
+        firstName: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        lastName:{
+        lastName: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        email:{
+        email: {
             type: DataTypes.STRING,
             allowNull: false,
             unique: true
         },
-        password:{
+        password: {
             type: DataTypes.STRING,
             allowNull: false,
         }
-    }, {freezeTableName: true});
+    }, { freezeTableName: true });
     return model;
 };
 
